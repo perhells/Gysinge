@@ -1,0 +1,36 @@
+from django.conf.urls import url
+
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.index, name='index'),
+    url(r'^about/$', views.about, name='about'),
+    url(r'^activities/$', views.activities, name='activities'),
+    url(r'^edit_activity/(?P<activity_id>.+)/$', views.edit_activity, name='edit_activity'),
+    url(r'^delete_activity/(?P<activity_id>.+)/$', views.delete_activity, name='delete_activity'),
+    url(r'^members/$', views.members, name='members'),
+    url(r'^edit_board_member/(?P<board_member_id>.+)/$', views.edit_board_member, name='edit_board_member'),
+    url(r'^delete_board_member/(?P<board_member_id>.+)/$', views.delete_board_member, name='delete_board_member'),
+    url(r'^contact/$', views.contact, name='contact'),
+    url(r'^calendar/$', views.calendar, name='calendar'),
+    url(r'^malts/$', views.list_malts, name='list_malts'),
+    url(r'^access_denied/$', views.access_denied, name='access_denied'),
+    url(r'^invalid_user/$', views.invalid_user, name='invalid_user'),
+    url(r'^invalid_form/$', views.invalid_form, name='invalid_form'),
+    url(r'^login/$', views.login_view, name='login_view'),
+    url(r'^logout/$', views.logout_view, name='logout_view'),
+    url(r'^create_user/$', views.create_user, name='create_user'),
+    url(r'^delete_user/(?P<username>.+)/$', views.delete_user, name='delete_user'),
+    url(r'^grant_staff/(?P<username>.+)/$', views.grant_staff, name='grant_staff'),
+    url(r'^revoke_staff/(?P<username>.+)/$', views.revoke_staff, name='revoke_staff'),
+    url(r'^settings/$', views.settings, name='settings'),
+    url(r'^hops/$', views.list_hops, name='list_hops'),
+    url(r'^malt_form/$', views.malt_form, name='malt_form'),
+    url(r'^hops_form/$', views.hops_form, name='hops_form'),
+    url(r'^history/malt/$', views.history_malt, name='history_malt'),
+    url(r'^history/hops/$', views.history_hops, name='history_hops'),
+    url(r'^malt_history/(?P<current_malt>.+)/$', views.malt_history, name='malt_history'),
+    url(r'^hops_history/(?P<current_hops>.+)/$', views.hops_history, name='hops_history'),
+    url(r'^malt/(?P<current_malt>.+)/$', views.update_malt_form, name='update_malt_form'),
+    url(r'^hops/(?P<current_hops>.+)/$', views.update_hops_form, name='update_hops_form'),
+]
