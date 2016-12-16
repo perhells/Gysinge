@@ -120,8 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'maltlager/static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'maltlager/static/')
 
 #PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, 'maltlager/static/')
-#STATIC_ROOT = '/static'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'maltlager/static/')
+STATIC_ROOT = '/static'
