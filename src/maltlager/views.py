@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, views
 from maltlager.models import malt, hops, maltchange, hopschange, board_member, activity
-from maltlager.forms import MaltForm, UpdateMaltForm, HopsForm, UpdateHopsForm, CreateUserForm, BoardMemberForm, ActivityForm
+from maltlager.forms import MaltForm, UpdateMaltForm, HopsForm, UpdateHopsForm, CreateUserForm, BoardMemberForm, ActivityForm, ContactForm
 from django.utils import timezone
 import django.db
 import os
@@ -193,8 +193,25 @@ def delete_board_member(request, board_member_id):
         return HttpResponseRedirect('/access_denied/')
 
 def contact(request):
-    context = {'active_page': 'contact'}
-    return render(request, 'maltlager/contact.html', context)
+    if request.method == 'POST':
+        name = request.POST['name']
+        mail = request.POST['mail']
+        content = request.POST['content']
+        if name is not None and mail is not None and content is not None:
+            send_mail(
+                'Gysinge Bryggerisällskap, message from: ' + name,
+                'The following message was received by ' + name + ' (' + mail + ')\n\n' + content,
+                'info@gysingebryggeri.se',
+                ['info@gysingebryggeri.se'],
+                fail_silently=False,
+            )
+            return HttpResponseRedirect('/contact/#valid')
+        else:
+            return HttpResponseRedirect('/contact/#invalid')
+    else:
+        form = ContactForm()
+        context = {'form': form, 'active_page': 'contact'}
+        return render(request, 'maltlager/contact.html', context)
 
 def calendar(request):
     context = {'active_page': 'calendar'}
