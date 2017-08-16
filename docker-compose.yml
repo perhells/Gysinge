@@ -4,11 +4,13 @@ services:
     image: nginx:latest
     container_name: ng01
     ports:
-      - "8000:8000"
+      - "80:8000"
+      - "443:8443"
     volumes:
       - ./src:/src
       - ./config/nginx:/etc/nginx/conf.d
-      - /static:/static
+      - ./src/maltlager/static:/static
+      - ./ssl:/etc/nginx/ssl
     depends_on:
       - web
   web:
@@ -19,7 +21,7 @@ services:
       - db
     volumes:
       - ./src:/src
-      - /static:/static
+      - ./src/maltlager/static:/static
     expose:
       - "8000"
 
