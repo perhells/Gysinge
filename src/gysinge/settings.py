@@ -23,13 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'cvg7=7tbi4zei6#_l!+w1km%*2%zguln7fow^24rp)j^)&qwbw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-#ALLOWED_HOSTS = ['maltlager.gysingebryggeri.se']
-ALLOWED_HOSTS =[]
+ALLOWED_HOSTS = ['web']
 
 USER_TZ = True
-
 
 # Application definition
 
