@@ -219,16 +219,19 @@ def calendar(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username,password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('/')
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username,password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/')
+                else:
+                    return HttpResponseRedirect('/inactive_user/')
             else:
-                return HttpResponseRedirect('/inactive_user/')
-        else:
+                return HttpResponseRedirect('/invalid_user/')
+        except:
             return HttpResponseRedirect('/invalid_user/')
     else:
         form = AuthenticationForm(request)
